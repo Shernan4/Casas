@@ -7,6 +7,7 @@ Created on Sun Nov 11 17:16:21 2018
 """
 import numpy as np 
 from scipy import integrate
+import matplotlib.pyplot as plt
 
 def pendulo(t, y):
     """
@@ -38,6 +39,12 @@ def pendulo(t, y):
     return [d_theta, d_omega]
 
 y_initial = [0,np.pi]
+tlist = np.linspace(0,10,100)
 
-solution = integrate.solve_ivp(pendulo, (0, 10), y_initial)
+solution = integrate.solve_ivp(pendulo, (0, 10), y_initial, t_eval=tlist)
+
+fig, axis = plt.subplots()
+axis.plot(solution.t, solution.y.T)
+plt.show()
+
 
