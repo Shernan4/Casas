@@ -17,7 +17,11 @@ def pendulo(t, y):
     t : time
         Instante de tiempo
     y : array-like 
-        Contiene la informacion del angulo (Theta) y la velocidad angular (omega)    
+        Contiene la informacion del angulo (Theta) y la velocidad angular (omega)
+        
+    Returns
+    -------
+    Las dos derivadas de theta y omega
     
     """
     
@@ -32,3 +36,8 @@ def pendulo(t, y):
     d_omega = -b * omega - (c * np.sin(theta))
     
     return [d_theta, d_omega]
+
+y_initial = [0,np.pi]
+
+solution = integrate.solve_ivp(pendulo, (0, 10), y_initial)
+
